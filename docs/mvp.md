@@ -1,4 +1,4 @@
-## 7.5 MVP
+## MVP
 # Funcionalidades Essenciais:
 - Feature de adicionar nota ;
 - Feature criação de avaliação e atividades;
