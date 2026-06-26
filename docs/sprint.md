@@ -17,6 +17,7 @@
 |11|Diário de Sprint||X|||
 |12|Correções||X|||
 |13|Apresentação|||X||
+|14|README||X|||
 
 ## 2. Principais Decisões Tomadas
 *   **Delimitação do BPMN:** Decidimos não modelar o sistema inteiro em um único fluxo. Optamos por focar exclusivamente no processo integrado de criação de atividades, entregas e atribuição de notas, garantindo que não ficasse confuso.
