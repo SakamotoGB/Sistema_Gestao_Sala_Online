@@ -2,6 +2,7 @@
 
 ## Estilo arquitetural: Híbrido (Monolito Modular + Publish-Subscribe)
 Justificativa: O monolito modular foi escolhido por ser um padrão de arquitetura que organiza o código em módulos independentes dentro de uma única base de código e unidade de implantação. Unindo a simplicidade dos sistemas monolíticos tradicionais com a organização e os limites bem definidos típicos dos microsserviços. Nesse modelo de arquitetura, as camadas internas garantem que as regras de negócio cruciais fiquem isoladas da camada de apresentação. 
+
 O ecossistema de sala de aula deverá utilizar de gatilhos de comunicação que funcionarão em forma de publicações no sistema (avisos, atividades, avaliações, novas notas, entregas atrasadas, etc). Assim, a inclusão do padrão Publish-Subscribe permite que o sistema funcione por meio de publicações assíncronas.
 
 ## Decisões arquiteturais
