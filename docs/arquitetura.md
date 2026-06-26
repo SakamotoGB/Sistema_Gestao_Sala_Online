@@ -14,15 +14,20 @@ O ecossistema de sala de aula deverá utilizar de gatilhos de comunicação que 
 
 ## Desafios Arquiteturais
 
-**Desafio 1:** Risco de Lentidão no Servidor com Disparo de Avisos
+### **Desafio 1:** Risco de Lentidão no Servidor com Disparo de Avisos
 
 **Dificuldade:** O ecossistema de sala de aula exige muitas notificações simultâneas. Se um professor postar uma nota, o sistema precisaria atualizar o banco de dados e disparar alertas para todos os alunos da turma ao mesmo tempo. 
 
 **Solução Arquitetural:** Adoção do padrão Publish-Subscribe (Event-Driven) para a camada de notificações. O sistema principal do monolito processa a nota, salva no banco e apenas "publica" o evento. Uma rotina em segundo plano (assíncrona) captura esse evento e envia os avisos aos alunos aos poucos, liberando a tela do professor instantaneamente.
 
-- **Desafio 2:** Evitar Fraudes e Alterações Indevidas de Notas
+**Desafio 2:** Evitar Fraudes e Alterações Indevidas de Notas
+
 **Dificuldade:** Garantir a imutabilidade após a correção. Se essa verificação dependesse apenas da tela do navegador (interface), um usuário mal-intencionado poderia burlar o código visual e reenviar o arquivo.
+
 **Solução Arquitetural:** Implementação de Isolamento em Camadas Internas. A lógica de validação foi blindada dentro da camada de serviço. Mesmo que a tela sofra alguma tentativa de modificação, quando o pedido chega no "cérebro" do servidor, o sistema checa o banco de dados, vê que o campo da nota já está preenchido e barra qualquer tentativa de reenvio da entrega.
-Desafio 3: Garantir o Controle de Acesso Rigoroso (Professor vs. Aluno)
-Dificuldade: O sistema possui regras de negócio muito estritas baseadas no papel de cada usuário. O desafio arquitetural se torna garantir que um aluno mal-intencionado (ou que entendesse de programação) não consiga burlar a interface do sistema se passando por professor para alterar a sua própria nota ou criar prazos falsos.
-Solução Arquitetural: Implementação de um mecanismo de Controle de Acesso Baseado em Perfis (RBAC - Role-Based Access Control) integrado nativamente nas camadas internas do servidor. Quando o usuário faz login, o sistema identifica seu perfil ("Professor" ou "Aluno"). Assim, mesmo que um aluno consiga alterar o código visual da tela para mostrar o botão "Lançar Nota", ao clicar nele, a camada de serviço do servidor intercepta o pedido, valida que o perfil dele é de "Estudante" e bloqueia a ação imediatamente, retornando um erro de "Não Autorizado".
+
+**Desafio 3:** Garantir o Controle de Acesso Rigoroso (Professor vs. Aluno)
+
+**Dificuldade:** O sistema possui regras de negócio muito estritas baseadas no papel de cada usuário. O desafio arquitetural se torna garantir que um aluno mal-intencionado (ou que entendesse de programação) não consiga burlar a interface do sistema se passando por professor para alterar a sua própria nota ou criar prazos falsos.
+
+**Solução Arquitetural:** Implementação de um mecanismo de Controle de Acesso Baseado em Perfis (RBAC - Role-Based Access Control) integrado nativamente nas camadas internas do servidor. Quando o usuário faz login, o sistema identifica seu perfil ("Professor" ou "Aluno"). Assim, mesmo que um aluno consiga alterar o código visual da tela para mostrar o botão "Lançar Nota", ao clicar nele, a camada de serviço do servidor intercepta o pedido, valida que o perfil dele é de "Estudante" e bloqueia a ação imediatamente, retornando um erro de "Não Autorizado".
