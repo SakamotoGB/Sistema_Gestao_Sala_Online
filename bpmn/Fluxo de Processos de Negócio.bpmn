@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="70fd62a" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.9.0">
   <bpmn:collaboration id="Collaboration_0ztsz97">
-    <bpmn:participant id="Participant_1wpt70d" name="Sala de Aula online" processRef="Process_1w5cj0d" />
+    <bpmn:participant id="Participant_1wpt70d" name="Fluxo de criação de atividade" processRef="Process_1w5cj0d" />
     <bpmn:textAnnotation id="TextAnnotation_1p7dxet">
       <bpmn:text>RN01: Apenas professores podem criar atividades.</bpmn:text>
     </bpmn:textAnnotation>
